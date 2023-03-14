@@ -25,17 +25,18 @@ const initTimer = (maxTime) => {
 
 const initGame = () => {
     initTimer(30);
-    let randomObj = words[Math.floor(Math.random() * words.length)];
-    let wordArray = randomObj.word.split("");
+    $.getJSON('http://127.0.0.1:8080/word/random', function(data) {
+    let wordArray = data.name.split("");
     for (let i = wordArray.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
     }
     wordText.innerText = wordArray.join("");
-    hint.innerText = randomObj.hint;
-    correctWord = randomObj.word.toLowerCase();
+    hint.innerText = data.hint;
+    correctWord = data.name.toLowerCase();
     inputField.value = "";
     inputField.setAttribute("maxlength", correctWord.length.toString());
+    });
 }
 
 
