@@ -42,11 +42,21 @@ body{
 .content .details {
     margin: 25px 0 20px;
 }
+.details p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
 
-.message {
+.details p b{
+    font-weight: 500;
+}
+
+.details .hint{
+    display: none;
+}
+
+.details .message {
     font-size: 15px;
-    padding-bottom: 8px;
-    color: red;
 }
 
 .content input{
@@ -79,22 +89,22 @@ body{
 
 .buttons .login {
     display: none;
-    background: #01396e;
+    background: #6c757d;
 }
 
 .buttons .create {
     display: none;
-    background: #19a100;
+    background: #5372F0;
 }
 
 .buttons .login:hover {
     display: none;
-    background: #0065c4;
+    background: #536e45;
 }
 
 .buttons .create:hover {
     display: none;
-    background: #136e00;
+    background: #343e62;
 }
 
 .buttons .start {
@@ -105,8 +115,4 @@ body{
 .buttons .start:hover {
     background: #37679f;
     width: calc(100% - 8px);
-}
-
-.content .password {
-    display: none;
 }

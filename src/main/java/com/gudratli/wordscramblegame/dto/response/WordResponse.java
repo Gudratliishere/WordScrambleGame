@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class WordResponse
 {
+    private Long wordId;
     private String name;
     private String hint;
 }
