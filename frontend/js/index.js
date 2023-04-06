@@ -17,3 +17,7 @@ loginButton.addEventListener("click", function ()
 {
     messageText.innerText = "This username doesn't exist, create new one!";
 });
+
+usernameInput.addEventListener("keyup", (e) => {
+    if (e.code === "Enter") startButton.click()
+})
