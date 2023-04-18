@@ -15,7 +15,26 @@ startButton.addEventListener("click", function () {
 
 loginButton.addEventListener("click", function ()
 {
-    messageText.innerText = "This username doesn't exist, create new one!";
+    $.ajax({
+        type: "GET",
+        url: 'http://127.0.0.1:8080/auth/user/' + usernameInput.textContent,
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            if (response === true) {
+                $.ajax({
+                    type: "POST",
+                    url: 'http://127.0.0.1:8080/auth/login',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response)
+                    {
+                        $window.localStorage.token = response;
+                    }
+                })
+            } else {
+                messageText.innerText = "This username doesn't exist, create new one!";
+            }
+        }
+    })
 });
 
 usernameInput.addEventListener("keyup", (e) => {
