@@ -67,6 +67,7 @@ body{
     font-size: 18px;
     border-radius: 5px;
     border: 1px solid #aaa;
+    display: none;
 }
 
 .content .buttons{
@@ -87,22 +88,22 @@ body{
     width: calc(100% / 2 - 8px);
 }
 
-.buttons .login {
+.buttons .refresh-word {
     display: none;
-    background: #6c757d;
+    background: #0fad6a;
 }
 
-.buttons .create {
+.buttons .check-word {
     display: none;
     background: #5372F0;
 }
 
-.buttons .login:hover {
+.buttons .refresh-word:hover {
     display: none;
-    background: #536e45;
+    background: #55ff00;
 }
 
-.buttons .create:hover {
+.buttons .check-word:hover {
     display: none;
     background: #343e62;
 }

@@ -28,6 +28,18 @@ public class UserServiceImpl implements UserService, UserDetailsService
     }
 
     @Override
+    public void decreasePoint(Long userId, Integer point)
+    {
+        userRepository.decreasePoint(userId, point);
+    }
+
+    @Override
+    public void increasePoint(Long userId, Integer point)
+    {
+        userRepository.increasePoint(userId, point);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
         return getByUsername(username);

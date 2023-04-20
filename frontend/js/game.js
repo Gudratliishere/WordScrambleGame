@@ -2,8 +2,8 @@ const wordText = document.querySelector(".word")
 const hint = document.querySelector(".hint span")
 const hintField = document.querySelector(".hint")
 const timeText = document.querySelector(".time b")
-const refreshButton = document.querySelector(".login");
-const checkButton = document.querySelector(".create");
+const refreshButton = document.querySelector(".refresh-word");
+const checkButton = document.querySelector(".check-word");
 const startButton = document.querySelector(".start");
 const inputField = document.querySelector("input")
 const messageText = document.querySelector(".message")
@@ -25,13 +25,19 @@ const initTimer = (maxTime) => {
 
 const initGame = () => {
     initTimer(30);
-    $.getJSON('http://127.0.0.1:8080/word/random', function (data) {
-        wordText.innerText = data.name;
-        wordId = data.wordId;
-        hint.innerText = data.hint;
-        inputField.value = "";
-        inputField.setAttribute("maxlength", data.name.length.toString());
-    });
+    $.ajax({
+        type: "GET",
+        url: 'http://127.0.0.1:8080/word/random',
+        contentType: "application/json; charset=utf-8",
+        headers: {'Authorization': 'Bearer ' + window.localStorage.token},
+        success: function (data) {
+            wordText.innerText = data.name;
+            wordId = data.wordId;
+            hint.innerText = data.hint;
+            inputField.value = "";
+            inputField.setAttribute("maxlength", data.name.length.toString());
+        }
+    })
 }
 
 
@@ -41,6 +47,7 @@ const startGame = () => {
     refreshButton.style.display = "block";
     checkButton.style.display = "block";
     hintField.style.display = "block";
+    inputField.style.display = "block"
     messageText.innerText = "";
     initGame()
 }
@@ -56,12 +63,14 @@ const checkWord = () => {
             url: 'http://127.0.0.1:8080/word/checkWord',
             data: JSON.stringify({"wordId": wordId, "name": userWord}),
             contentType: "application/json; charset=utf-8",
+            headers: {'Authorization': 'Bearer ' + window.localStorage.token},
             success: function (response) {
                     if (response === true) {
                         messageText.innerText = `Congrats! ${userWord} is a correct word.`;
                         messageText.style.color = "green";
                         clearInterval(timer)
                     } else {
+                        increasePoint(5)
                         messageText.innerText = `Oops! ${userWord} is not a correct word.`;
                         messageText.style.color = "red";
                     }
@@ -75,3 +84,25 @@ inputField.addEventListener("keyup", (e) => {
     if (e.code === "Enter") checkWord()
 })
 startButton.addEventListener("click", startGame);
+
+function increasePoint(point)
+{
+    // $.ajax({
+    //     type: "POST",
+    //     url: 'http://127.0.0.1:8080/word/checkWord',
+    //     data: JSON.stringify({"wordId": wordId, "name": userWord}),
+    //     contentType: "application/json; charset=utf-8",
+    //     headers: {'Authorization': 'Bearer ' + window.localStorage.token},
+    //     success: function (response) {
+    //         if (response === true) {
+    //             messageText.innerText = `Congrats! ${userWord} is a correct word.`;
+    //             messageText.style.color = "green";
+    //             clearInterval(timer)
+    //         } else {
+    //             increasePoint(5)
+    //             messageText.innerText = `Oops! ${userWord} is not a correct word.`;
+    //             messageText.style.color = "red";
+    //         }
+    //     }
+    // })
+}

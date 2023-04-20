@@ -47,7 +47,7 @@ dependencies {
 group = 'com.gudratli'
 version = '0.0.1-SNAPSHOT'
 description = 'WordScrambleGame'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications {

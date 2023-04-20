@@ -30,6 +30,8 @@ public class SecurityConfig
     {
         httpSecurity
                 .csrf().disable()
+                .cors()
+                .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()

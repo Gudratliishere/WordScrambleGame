@@ -110,3 +110,16 @@ body{
 .content .password {
     display: none;
 }
+
+.buttons .back {
+    background: #5372F0;
+    padding: 5px 0;
+    width: 100%;
+    display: none;
+}
+
+.buttons .back:hover {
+    background: #002ef8;
+    padding: 5px 0;
+    width: 100%;
+}
