@@ -15,7 +15,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom
 
     @Override
     @Transactional
-    public void decreasePoint(Long userId, Integer point)
+    public void decreasePoint(String username, Integer point)
     {
         String query = """
                 update User u
@@ -23,12 +23,12 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom
                 select
                     uu.point
                 from User uu
-                where uu.id = :id) - :point
-                where u.id = :id
+                where uu.username = :username) - :point
+                where u.username = :username
                 """;
 
         Query resultQuery = entityManager.createQuery(query);
-        resultQuery.setParameter("id", userId);
+        resultQuery.setParameter("username", username);
         resultQuery.setParameter("point", point);
 
         resultQuery.executeUpdate();
@@ -36,7 +36,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom
 
     @Override
     @Transactional
-    public void increasePoint(Long userId, Integer point)
+    public void increasePoint(String username, Integer point)
     {
         String query = """
                 update User u
@@ -44,12 +44,12 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom
                 select
                     uu.point
                 from User uu
-                where uu.id = :id) + :point
-                where u.id = :id
+                where uu.username = :username) + :point
+                where u.username = :username
                 """;
 
         Query resultQuery = entityManager.createQuery(query);
-        resultQuery.setParameter("id", userId);
+        resultQuery.setParameter("username", username);
         resultQuery.setParameter("point", point);
 
         resultQuery.executeUpdate();

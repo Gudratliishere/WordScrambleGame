@@ -117,3 +117,18 @@ body{
     background: #37679f;
     width: calc(100% - 8px);
 }
+
+.title {
+    padding: 15px;
+}
+
+.game-name {
+    padding-right: 30px;
+    font-size: 30px;
+}
+
+.point {
+    float: right;
+    font-size: 20px;
+    padding: 10px
+}

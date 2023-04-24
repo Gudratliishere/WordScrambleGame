@@ -28,15 +28,15 @@ public class UserServiceImpl implements UserService, UserDetailsService
     }
 
     @Override
-    public void decreasePoint(Long userId, Integer point)
+    public void decreasePoint(String username, Integer point)
     {
-        userRepository.decreasePoint(userId, point);
+        userRepository.decreasePoint(username, point);
     }
 
     @Override
-    public void increasePoint(Long userId, Integer point)
+    public void increasePoint(String username, Integer point)
     {
-        userRepository.increasePoint(userId, point);
+        userRepository.increasePoint(username, point);
     }
 
     @Override

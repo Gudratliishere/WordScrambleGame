@@ -95,6 +95,7 @@ function login() {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             window.localStorage.token = response.token;
+            window.localStorage.username = usernameInput.value.toLowerCase()
             window.location.href = "game.html";
         },
         error: function () {

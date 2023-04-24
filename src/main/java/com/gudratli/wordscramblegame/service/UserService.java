@@ -8,7 +8,7 @@ public interface UserService
 
     User getByUsername(String username);
 
-    void decreasePoint(Long userId, Integer point);
+    void decreasePoint(String username, Integer point);
 
-    void increasePoint(Long userId, Integer point);
+    void increasePoint(String username, Integer point);
 }
