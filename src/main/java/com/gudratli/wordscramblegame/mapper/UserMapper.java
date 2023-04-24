@@ -1,6 +1,7 @@
 package com.gudratli.wordscramblegame.mapper;
 
 import com.gudratli.wordscramblegame.dto.request.CreateUserRequest;
+import com.gudratli.wordscramblegame.dto.response.UserRankResponse;
 import com.gudratli.wordscramblegame.dto.response.UserResponse;
 import com.gudratli.wordscramblegame.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,10 @@ public class UserMapper
     public UserResponse map(User user)
     {
         return modelMapper.map(user, UserResponse.class);
+    }
+
+    public UserRankResponse mapToUserRank(User user)
+    {
+        return modelMapper.map(user, UserRankResponse.class);
     }
 }

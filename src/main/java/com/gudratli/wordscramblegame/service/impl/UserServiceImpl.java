@@ -1,5 +1,6 @@
 package com.gudratli.wordscramblegame.service.impl;
 
+import com.gudratli.wordscramblegame.dto.response.UserRankResponse;
 import com.gudratli.wordscramblegame.entity.User;
 import com.gudratli.wordscramblegame.repository.UserRepository;
 import com.gudratli.wordscramblegame.service.UserService;
@@ -8,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +40,18 @@ public class UserServiceImpl implements UserService, UserDetailsService
     public void increasePoint(String username, Integer point)
     {
         userRepository.increasePoint(username, point);
+    }
+
+    @Override
+    public UserRankResponse getUserRankByUsername(String username)
+    {
+        return userRepository.getUserRankByUsername(username);
+    }
+
+    @Override
+    public List<UserRankResponse> getTopUserRank()
+    {
+        return userRepository.getTopUserRank();
     }
 
     @Override

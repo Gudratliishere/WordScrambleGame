@@ -9,25 +9,49 @@
     <script src="js/game.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="title">
-            <span class="game-name">Word Scramble</span>
-            <span class="point" hidden="hidden" id="point">Point: -5</span>
+<div class="container">
+    <div class="title">
+        <span class="game-name">Word Scramble</span>
+        <span class="point" hidden="hidden" id="point">Point: -5</span>
+    </div>
+    <div class="content">
+        <p class="word"></p>
+        <div class="details">
+            <p class="hint">Hint: <span></span></p>
+            <p class="time">Time left: <span><b>30</b>s</span></p>
+            <p class="message"></p>
         </div>
-        <div class="content">
-            <p class="word"></p>
-            <div class="details">
-                <p class="hint">Hint: <span></span></p>
-                <p class="time">Time left: <span><b>30</b>s</span></p>
-                <p class="message"></p>
-            </div>
-            <input type="text" placeholder="Enter a valid word">
-            <div class="buttons">
-                <button class="start">Start</button>
-                <button class="refresh-word">Refresh Word</button>
-                <button class="check-word">Check Word</button>
-            </div>
+        <input type="text" placeholder="Enter a valid word">
+        <div class="buttons">
+            <button class="start">Start</button>
+            <button class="refresh-word">Refresh Word</button>
+            <button class="check-word">Check Word</button>
         </div>
     </div>
+</div>
+
+<div class="players-container container">
+    <h2>Players:</h2>
+    <div class="players-content">
+        <div class="column column-rank">
+            <h3>Rank:</h3>
+            <div class="players-rank"></div>
+            <hr>
+            <span class="my-rank">5</span>
+        </div>
+        <div class="column column-username">
+            <h3>Player:</h3>
+            <div class="players-username"></div>
+            <hr>
+            <span class="my-username">User</span>
+        </div>
+        <div class="column column-point">
+            <h3>Point:</h3>
+            <div class="players-point"></div>
+            <hr>
+            <span class="my-point">50</span>
+        </div>
+    </div>
+</div>
 </body>
 </html>

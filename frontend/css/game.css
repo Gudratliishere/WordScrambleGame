@@ -15,6 +15,7 @@ body{
 }
 
 .container{
+    margin-left: 10%;
     border-radius: 7px;
     background: #fff;
 }
@@ -131,4 +132,35 @@ body{
     float: right;
     font-size: 20px;
     padding: 10px
+}
+
+.players-container {
+    width: 30%;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.column-rank {
+    width: 20%;
+}
+
+.column-username {
+    width: 50%;
+}
+
+.column-point {
+    width: 30%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.players-container {
+    display: none;
 }
