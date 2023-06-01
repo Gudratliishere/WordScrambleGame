@@ -123,3 +123,11 @@ body{
     padding: 5px 0;
     width: 100%;
 }
+
+.loading {
+    display: none;
+}
+
+.loading img{
+    width: 80px;
+}

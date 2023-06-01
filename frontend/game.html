@@ -9,23 +9,25 @@
     <script src="js/game.js" defer></script>
 </head>
 <body>
-<div class="container">
+<div class="game-container container">
     <div class="title">
         <span class="game-name">Word Scramble</span>
-        <span class="point" hidden="hidden" id="point">Point: -5</span>
+        <span class="point" hidden="hidden" id="point">Xal: -5</span>
     </div>
     <div class="content">
         <p class="word"></p>
         <div class="details">
-            <p class="hint">Hint: <span></span></p>
-            <p class="time">Time left: <span><b>30</b>s</span></p>
-            <p class="message"></p>
+            <p class="hint">İpucu: <span></span></p>
+            <p class="time">Qalan vaxt: <span><b>30</b>s</span></p>
+            <span class="message message1"></span>
+            <span class="message message2"></span>
+            <span class="message message3"></span>
         </div>
-        <input type="text" placeholder="Enter a valid word">
+        <input type="text" placeholder="Düzgün sözü yazın">
         <div class="buttons">
-            <button class="start">Start</button>
-            <button class="refresh-word">Refresh Word</button>
-            <button class="check-word">Check Word</button>
+            <button class="start">Başla</button>
+            <button class="refresh-word">Sözü yenilə</button>
+            <button class="check-word">Sözü yoxla</button>
         </div>
     </div>
 </div>

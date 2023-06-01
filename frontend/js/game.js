@@ -6,7 +6,9 @@ const refreshButton = document.querySelector(".refresh-word");
 const checkButton = document.querySelector(".check-word");
 const startButton = document.querySelector(".start");
 const inputField = document.querySelector("input")
-const messageText = document.querySelector(".message")
+const messageText1 = document.querySelector(".message1")
+const messageText2 = document.querySelector(".message2")
+const messageText3 = document.querySelector(".message3")
 const pointSpan = document.querySelector(".point")
 const myRankSpan = document.querySelector(".my-rank")
 const myUsernameSpan = document.querySelector(".my-username")
@@ -18,6 +20,10 @@ const playersContainer = document.querySelector('.players-container')
 
 let wordId, timer, win, timeout;
 
+setInterval(() => {
+    refreshRank()
+}, 5000);
+
 const initTimer = (maxTime) => {
     clearInterval(timer);
     timer = setInterval(() => {
@@ -28,7 +34,7 @@ const initTimer = (maxTime) => {
         clearInterval(timer);
         decreasePoint(10)
         timeout = true
-        messageText.innerText = `Time out!!`;
+        messageText.innerText = `Vaxt doldu!!`;
         messageText.style.color = "red";
     }, 1000);
 }
@@ -60,7 +66,9 @@ const startGame = () => {
     checkButton.style.display = "block";
     hintField.style.display = "block";
     inputField.style.display = "block"
-    messageText.innerText = "";
+    messageText1.innerText = "";
+    messageText2.innerText = "";
+    messageText3.innerText = "";
     playersContainer.style.display = "block"
     win = false
     timeout = false
@@ -71,7 +79,7 @@ const checkWord = () => {
     if (win !== true && timeout !== true) {
         let userWord = inputField.value.toLocaleLowerCase();
         if (!userWord) {
-            messageText.innerText = "Please write a word!";
+            messageText.innerText = "Sözü daxil edin!";
             messageText.style.color = "red";
         } else {
             $.ajax({
@@ -83,14 +91,20 @@ const checkWord = () => {
                 success: function (response) {
                     if (response === true) {
                         increasePoint(30)
-                        messageText.innerText = `Congrats! ${userWord} is a correct word.`;
-                        messageText.style.color = "green";
+                        messageText1.innerText = 'Təbriklər!';
+                        messageText2.innerText = userWord;
+                        messageText3.innerText = 'düzgündür.';
+                        messageText1.style.color = "green";
+                        messageText3.style.color = "green";
                         clearInterval(timer)
                         win = true
                     } else {
                         decreasePoint(5)
-                        messageText.innerText = `Oops! ${userWord} is not a correct word.`;
-                        messageText.style.color = "red";
+                        messageText1.innerText = 'Oops!'
+                        messageText2.innerText = userWord
+                        messageText3.innerText = 'düzgün deyil.';
+                        messageText1.style.color = "red";
+                        messageText3.style.color = "red";
                     }
                 }
             })
@@ -104,8 +118,7 @@ inputField.addEventListener("keyup", (e) => {
 })
 startButton.addEventListener("click", startGame);
 
-function decreasePoint(point)
-{
+function decreasePoint(point) {
     showPointChange("Point: -" + point)
     $.ajax({
         type: "POST",
@@ -116,8 +129,7 @@ function decreasePoint(point)
     refreshRank()
 }
 
-function increasePoint(point)
-{
+function increasePoint(point) {
     showPointChange("Point: +" + point)
     $.ajax({
         type: "POST",
@@ -128,20 +140,17 @@ function increasePoint(point)
     refreshRank()
 }
 
-function showPointChange (value)
-{
+function showPointChange(value) {
     $("#point").fadeIn('slow').animate({opacity: 1.0}, 1500).delay(300).hide('slow');
     pointSpan.innerText = value
 }
 
-function refreshRank()
-{
+function refreshRank() {
     fetchMyRank()
     fetchUsersRank()
 }
 
-function fetchMyRank ()
-{
+function fetchMyRank() {
     $.ajax({
         type: "GET",
         url: 'http://127.0.0.1:8080/user/rank',
@@ -155,8 +164,7 @@ function fetchMyRank ()
     })
 }
 
-function fetchUsersRank ()
-{
+function fetchUsersRank() {
     $.ajax({
         type: "GET",
         url: 'http://127.0.0.1:8080/user/playersRank',

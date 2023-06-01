@@ -5,18 +5,19 @@ const backButton = document.querySelector(".back")
 const usernameInput = document.querySelector(".username")
 const passwordInput = document.querySelector(".password")
 const messageText = document.querySelector(".message")
+const loading = document.querySelector(".loading")
 
 startButton.addEventListener("click", function () {
     if (usernameInput.value !== '') {
         messageText.innerText = ""
         loginPanelEnable()
     } else
-        messageText.innerText = "Please fill username!"
+        messageText.innerText = "Zəhmət olmasa istifadəçi adını daxil edin!"
 });
 
 loginButton.addEventListener("click", function () {
     if (passwordInput.value === '')
-        messageText.innerText = "Please fill password"
+        messageText.innerText = "Zəhmət olmasa parolu yazın."
     else {
         messageText.innerText = ""
         $.ajax({
@@ -27,7 +28,7 @@ loginButton.addEventListener("click", function () {
                 if (response === true) {
                     login()
                 } else {
-                    messageText.innerText = "This username doesn't exist, create new one!";
+                    messageText.innerText = "Bu istifadəçi mövcud deyil, yenisini yaradın!";
                 }
             }
         })
@@ -36,7 +37,7 @@ loginButton.addEventListener("click", function () {
 
 createButton.addEventListener("click", function () {
     if (passwordInput.value === '')
-        messageText.innerText = "Please fill password"
+        messageText.innerText = "Zəhmət olmasa parolu yazın."
     else {
         messageText.innerText = ""
         $.ajax({
@@ -57,11 +58,11 @@ createButton.addEventListener("click", function () {
                             login()
                         },
                         error: function () {
-                            messageText.innerText = "Something went wrong, try again!";
+                            messageText.innerText = "Xəta baş verdi, yenidən cəhd edin!";
                         }
                     })
                 } else {
-                    messageText.innerText = "This username already exists, choose another one!";
+                    messageText.innerText = "Bu istifadəçi adına uyğun başqa bir hesab mövcuddur, zəhmət olmasa başqa bir ad seçin!";
                 }
             }
         })
@@ -85,6 +86,8 @@ passwordInput.addEventListener("keyup", (e) => {
 });
 
 function login() {
+    passwordInput.style.display = "none";
+    loading.style.display = "block";
     $.ajax({
         type: "POST",
         url: 'http://127.0.0.1:8080/auth/login',
@@ -99,7 +102,9 @@ function login() {
             window.location.href = "game.html";
         },
         error: function () {
-            messageText.innerText = "Password is incorrect!";
+            passwordInput.style.display = "block";
+            loading.style.display = "none";
+            messageText.innerText = "Şifrə səhvdir!";
         }
     })
 }
