@@ -1,3 +1,5 @@
+const url = 'http://31.171.73.206:15263'
+
 const startButton = document.querySelector(".start")
 const loginButton = document.querySelector(".login")
 const createButton = document.querySelector(".create")
@@ -22,7 +24,7 @@ loginButton.addEventListener("click", function () {
         messageText.innerText = ""
         $.ajax({
             type: "GET",
-            url: 'http://127.0.0.1:8080/auth/user/' + usernameInput.value.toLowerCase(),
+            url: url + '/auth/user/' + usernameInput.value.toLowerCase(),
             contentType: "application/json; charset=utf-8",
             success: function (response) {
                 if (response === true) {
@@ -40,15 +42,16 @@ createButton.addEventListener("click", function () {
         messageText.innerText = "Zəhmət olmasa parolu yazın."
     else {
         messageText.innerText = ""
+        showLoading()
         $.ajax({
             type: "GET",
-            url: 'http://127.0.0.1:8080/auth/user/' + usernameInput.value.toLowerCase(),
+            url: url + '/auth/user/' + usernameInput.value.toLowerCase(),
             contentType: "application/json; charset=utf-8",
             success: function (response) {
                 if (response === false) {
                     $.ajax({
                         type: "POST",
-                        url: 'http://127.0.0.1:8080/auth/register',
+                        url: url + '/auth/register',
                         data: JSON.stringify({
                             "username": usernameInput.value.toLowerCase(),
                             "password": passwordInput.value.toLowerCase()
@@ -58,10 +61,12 @@ createButton.addEventListener("click", function () {
                             login()
                         },
                         error: function () {
+                            hideLoading()
                             messageText.innerText = "Xəta baş verdi, yenidən cəhd edin!";
                         }
                     })
                 } else {
+                    hideLoading()
                     messageText.innerText = "Bu istifadəçi adına uyğun başqa bir hesab mövcuddur, zəhmət olmasa başqa bir ad seçin!";
                 }
             }
@@ -86,11 +91,10 @@ passwordInput.addEventListener("keyup", (e) => {
 });
 
 function login() {
-    passwordInput.style.display = "none";
-    loading.style.display = "block";
+    showLoading()
     $.ajax({
         type: "POST",
-        url: 'http://127.0.0.1:8080/auth/login',
+        url: url + '/auth/login',
         data: JSON.stringify({
             "username": usernameInput.value.toLowerCase(),
             "password": passwordInput.value.toLowerCase()
@@ -102,8 +106,7 @@ function login() {
             window.location.href = "game.html";
         },
         error: function () {
-            passwordInput.style.display = "block";
-            loading.style.display = "none";
+            hideLoading()
             messageText.innerText = "Şifrə səhvdir!";
         }
     })
@@ -125,4 +128,16 @@ function loginPanelDisable() {
     backButton.style.display = "none";
     usernameInput.style.display = "block";
     passwordInput.style.display = "none";
+}
+
+function showLoading ()
+{
+    passwordInput.style.display = "none";
+    loading.style.display = "block";
+}
+
+function hideLoading ()
+{
+    passwordInput.style.display = "block";
+    loading.style.display = "none";
 }

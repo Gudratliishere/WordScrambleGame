@@ -1,3 +1,5 @@
+const url = 'http://31.171.73.206:15263'
+
 const wordText = document.querySelector(".word")
 const hint = document.querySelector(".hint span")
 const hintField = document.querySelector(".hint")
@@ -43,7 +45,7 @@ const initGame = () => {
     initTimer(30);
     $.ajax({
         type: "GET",
-        url: 'http://127.0.0.1:8080/word/random',
+        url: url + '/word/random',
         contentType: "application/json; charset=utf-8",
         headers: {'Authorization': 'Bearer ' + window.localStorage.token},
         success: function (data) {
@@ -84,7 +86,7 @@ const checkWord = () => {
         } else {
             $.ajax({
                 type: "POST",
-                url: 'http://127.0.0.1:8080/word/checkWord',
+                url: url + '/word/checkWord',
                 data: JSON.stringify({"wordId": wordId, "name": userWord}),
                 contentType: "application/json; charset=utf-8",
                 headers: {'Authorization': 'Bearer ' + window.localStorage.token},
@@ -122,7 +124,7 @@ function decreasePoint(point) {
     showPointChange("Point: -" + point)
     $.ajax({
         type: "POST",
-        url: 'http://127.0.0.1:8080/user/decreasePoint/' + point,
+        url: url + '/user/decreasePoint/' + point,
         contentType: "application/json; charset=utf-8",
         headers: {'Authorization': 'Bearer ' + window.localStorage.token}
     })
@@ -133,7 +135,7 @@ function increasePoint(point) {
     showPointChange("Point: +" + point)
     $.ajax({
         type: "POST",
-        url: 'http://127.0.0.1:8080/user/increasePoint/' + point,
+        url: url + '/user/increasePoint/' + point,
         contentType: "application/json; charset=utf-8",
         headers: {'Authorization': 'Bearer ' + window.localStorage.token}
     })
@@ -153,7 +155,7 @@ function refreshRank() {
 function fetchMyRank() {
     $.ajax({
         type: "GET",
-        url: 'http://127.0.0.1:8080/user/rank',
+        url: url + '/user/rank',
         contentType: "application/json; charset=utf-8",
         headers: {'Authorization': 'Bearer ' + window.localStorage.token},
         success: function (response) {
@@ -167,7 +169,7 @@ function fetchMyRank() {
 function fetchUsersRank() {
     $.ajax({
         type: "GET",
-        url: 'http://127.0.0.1:8080/user/playersRank',
+        url: url + '/user/playersRank',
         contentType: "application/json; charset=utf-8",
         headers: {'Authorization': 'Bearer ' + window.localStorage.token},
         success: function (response) {
