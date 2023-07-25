@@ -52,7 +52,7 @@ To run the game locally, follow these steps:
 
 ## Usage
 
-1. Visit the [Word Scramble Game](https://word-scramble-two.vercel.app/) web application.
+1. Visit the [Word Scramble Game](https://wordscramble-game.vercel.app/) web application.
 
 2. Follow the on-screen instructions to play the Word Scramble Game.
 
