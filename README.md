@@ -1,5 +1,3 @@
-
-```
 # Word Scramble Game
 
 A simple word scramble game implemented in Java and deployed as a web application.
@@ -8,7 +6,7 @@ A simple word scramble game implemented in Java and deployed as a web applicatio
 
 Word Scramble Game is a fun word puzzle where players have to unscramble jumbled letters to form meaningful words. This repository contains a Java implementation of the game, along with a web version deployed on Vercel.
 
-The web version of the game can be accessed [here](https://word-scramble-two.vercel.app/).
+The web version of the game can be accessed [here](https://wordscramble-game.vercel.app/).
 
 ## Features
 
