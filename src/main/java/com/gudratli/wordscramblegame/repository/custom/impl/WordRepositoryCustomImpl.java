@@ -9,6 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Random;
+
 @Repository
 public class WordRepositoryCustomImpl implements WordRepositoryCustom
 {
@@ -31,7 +34,9 @@ public class WordRepositoryCustomImpl implements WordRepositoryCustom
         Query resultQuery = entityManager.createQuery(query, Word.class);
         resultQuery.setParameter("username", getUsername());
 
-        return (Word) resultQuery.setMaxResults(1).getSingleResult();
+        @SuppressWarnings("unchecked")
+        var list = (List<Word>) resultQuery.getResultList();
+        return list.get(new Random().nextInt(list.size()));
     }
 
 

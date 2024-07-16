@@ -1,4 +1,4 @@
-const url = 'http://31.171.73.206:15263'
+const url = 'http://word-scramble-game-19c397df7ec8.herokuapp.com'
 
 const startButton = document.querySelector(".start")
 const loginButton = document.querySelector(".login")
