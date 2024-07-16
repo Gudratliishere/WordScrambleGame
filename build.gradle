@@ -38,9 +38,9 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'org.postgresql:postgresql:42.7.3'
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
-    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:11.2.3.jre17'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
 }
 

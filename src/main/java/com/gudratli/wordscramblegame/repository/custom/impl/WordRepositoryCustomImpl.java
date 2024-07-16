@@ -26,7 +26,6 @@ public class WordRepositoryCustomImpl implements WordRepositoryCustom
                                     us.word.id
                                from UserWord us
                                where us.user.username = :username)
-                order by newid()
                 """;
 
         Query resultQuery = entityManager.createQuery(query, Word.class);

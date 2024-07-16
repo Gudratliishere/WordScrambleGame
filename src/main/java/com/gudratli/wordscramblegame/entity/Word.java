@@ -18,9 +18,6 @@ public class Word
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wordId;
 
-    @Column(columnDefinition = "nvarchar(50)")
     private String name;
-
-    @Column(columnDefinition = "nvarchar(500)")
     private String hint;
 }
